@@ -126,9 +126,9 @@ const api = (API_URL = 'http://34.89.93.186:8080') => {
         console.error(err);
       }
     },
-    editAd: async (id, name, price, description, tags, type, photo) => {
+    editAd: async ({ _id, name, price, description, tags, type, photo }) => {
       try {
-        const response = await fetch(`${editAdApiEndpoint}${id}`, {
+        const response = await fetch(`${editAdApiEndpoint}${_id}`, {
           method: 'PUT',
           body: JSON.stringify({
             name: `${name}`,
