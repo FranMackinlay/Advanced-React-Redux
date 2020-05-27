@@ -2,7 +2,7 @@ import * as TYPES from './types';
 
 import api from '../services/api';
 
-const { getAds } = api();
+const { getAds, createAd } = api();
 
 export const fetchAdsRequest = () => ({
   type: TYPES.FETCH_ADS_REQUEST,
@@ -18,6 +18,11 @@ export const fetchAdsSuccess = ads => ({
   ads: ads.results,
 });
 
+export const createAdAction = adToCreate => ({
+  type: TYPES.CREATE_AD,
+  adToCreate,
+});
+
 export const fetchAds = () =>
   async function (dispatch, getState) {
     dispatch(fetchAdsRequest());
@@ -28,3 +33,13 @@ export const fetchAds = () =>
       dispatch(fetchAdsFailure(error));
     }
   };
+
+export const adCreation = adToCreate =>
+  async function (dispatch, getState) {
+    try {
+      const ad = await createAd(adToCreate);
+      dispatch(createAdAction(ad));
+    } catch (error) {
+      console.error(error);
+    }
+  }
