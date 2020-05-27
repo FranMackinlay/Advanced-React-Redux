@@ -5,7 +5,7 @@ import Login from '../Login/login';
 import Ads from '../Ads';
 import adDetail from '../AdDetail/adDetail';
 import CreateAd from '../CreateAd';
-import EditAd from '../EditAd/editAd';
+import EditAd from '../EditAd';
 import { useDispatch } from 'react-redux';
 import { fetchAds } from '../../store/actions';
 
