@@ -100,7 +100,7 @@ const api = (API_URL = 'http://34.89.93.186:8080') => {
         console.error(err);
       }
     },
-    createAd: async (name, price, description, tags, type, photo) => {
+    createAd: async ({ name, price, description, tags, type, photo }) => {
       try {
         console.log(name, price, description, tags, type, photo);
         const response = await fetch(`${adsApiEndpoint}`, {
