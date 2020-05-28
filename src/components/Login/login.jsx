@@ -1,37 +1,29 @@
 import React, { Component } from 'react';
-import api from '../../services/api';
 import { Link } from 'react-router-dom';
 import './login.css';
 
-const { login } = api();
-
 export default class Register extends Component {
 	state = {
-		userInput: '',
-		passInput: '',
+		username: '',
+		password: '',
 	};
 
 	userTyping = event => {
 		this.setState({
-			userInput: event.target.value,
+			username: event.target.value,
 		});
 	};
 	passTyping = event => {
 		this.setState({
-			passInput: event.target.value,
+			password: event.target.value,
 		});
 	};
 
 	onSubmit = async event => {
 		event.preventDefault();
-		const { userInput, passInput } = this.state;
-
-		const isLoginOk = await login(userInput, passInput);
-
-		if (isLoginOk.error) {
-			alert(isLoginOk.error);
-			this.goToRegistration();
-		} else {
+		await this.props.userLogin(this.state);
+		console.log('LOGIN PROPS', this.props);
+		if (this.props.isUserLoggedIn) {
 			this.props.history.push('/anuncios');
 		}
 	};
@@ -41,6 +33,7 @@ export default class Register extends Component {
 	};
 
 	render() {
+		console.log('LOGIN PROPS', this.props);
 		return (
 			<div className='login'>
 				<h1>Login</h1>
