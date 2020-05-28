@@ -14,7 +14,9 @@ export default function Ads(props) {
 		dispatch(fetchAds());
 	}, [dispatch]);
 
-	if (!props.ads) return <h1>Loading Ads...</h1>;
+	const isLogged = localStorage.getItem('isLogged');
+	if (!isLogged) props.history.push('/login');
+	if (props.ads === []) return <h1>Loading Ads...</h1>;
 	return (
 		<div className='content-container'>
 			<Header />
