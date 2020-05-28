@@ -2,7 +2,7 @@ import * as TYPES from './types';
 
 import api from '../services/api';
 
-const { getAds, createAd, editAd } = api();
+const { getAds, createAd, editAd, login } = api();
 
 export const fetchAdsRequest = () => ({
   type: TYPES.FETCH_ADS_REQUEST,
@@ -27,6 +27,46 @@ export const editAdAction = adToEdit => ({
   type: TYPES.EDIT_AD,
   adToEdit,
 });
+
+export const loginUserAction = success => ({
+  type: TYPES.USER_LOGIN,
+  success,
+});
+
+export const setLocalStorage = value => ({
+  type: TYPES.SET_LOCAL,
+  value,
+})
+
+export const checkLocal = () =>
+  async function (dispatch) {
+    try {
+      const isLogged = localStorage.getItem('isLogged');
+      if (isLogged) {
+        dispatch(setLocalStorage(isLogged));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+export const userLogin = userInfo =>
+  async function (dispatch) {
+    try {
+      console.log(userInfo);
+      if (userInfo) {
+        const { success } = await login(userInfo);
+        console.log(success);
+        if (success) {
+          dispatch(loginUserAction(success));
+          localStorage.setItem('isLogged', success);
+          dispatch(setLocalStorage(localStorage.getItem('isLogged')));
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 export const fetchAds = () =>
   async function (dispatch) {
