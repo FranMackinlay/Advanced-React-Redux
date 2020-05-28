@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Register from '../Register/register';
-import Login from '../Login/login';
+import Login from '../Login';
 import Ads from '../Ads';
 import adDetail from '../AdDetail/adDetail';
 import CreateAd from '../CreateAd';
@@ -28,7 +28,7 @@ function App() {
         <Route exact path="/anuncios/:_id" component={adDetail} />
         <Route path="/anuncios" component={Ads} />
         <Route path="/createAd" component={CreateAd} />
-        <Route to="/register" component={Register} />
+        <Route to="/Ads" component={Ads} />
       </Switch>
     </Router >
 
