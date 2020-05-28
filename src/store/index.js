@@ -4,12 +4,12 @@ import ReduxThunk from 'redux-thunk';
 import ReduxLogger from 'redux-logger';
 import { connectRouter } from 'connected-react-router';
 
-import { ads } from './reducers';
+import * as reducers from './reducers';
 
 const createRootReducer = ({ history }) =>
   combineReducers({
     router: connectRouter(history),
-    ads,
+    ...reducers,
   });
 
 const configureMiddleware = config => [
