@@ -25,7 +25,7 @@ const api = (API_URL = 'http://34.89.93.186:8080') => {
         console.error(err);
       }
     },
-    login: async (username, password) => {
+    login: async ({ username, password }) => {
       try {
         const response = await fetch(`${loginApiEndpoint}`, {
           method: 'POST',
@@ -39,12 +39,9 @@ const api = (API_URL = 'http://34.89.93.186:8080') => {
           credentials: 'include'
         });
 
-
         const isLoginSuccesfull = await response.json();
 
-
         return isLoginSuccesfull;
-
 
       } catch (err) {
         console.error(err);
