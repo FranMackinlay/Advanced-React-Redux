@@ -2,6 +2,8 @@ import * as TYPES from './types';
 
 const initialState = {
   ads: [],
+  isUserLogged: false,
+  localCheck: false,
 };
 
 const updateItem = (items, updatedId, update) => {
@@ -23,6 +25,18 @@ const createItem = (items, itemToCreate) => {
   ];
 };
 
+const isUserLogged = (state, success) => {
+  console.log(state);
+  state = success;
+  return state;
+};
+
+const setLocal = (state, value) => {
+  state = value;
+  console.log('REDUCER STATE', state);
+  return state;
+}
+
 export function ads(state = initialState.ads, action) {
   switch (action.type) {
     case TYPES.FETCH_ADS_SUCCESS:
@@ -40,7 +54,27 @@ export function ads(state = initialState.ads, action) {
         updatedAd: ad.updatedAd,
         _id: ad._id,
       }));
+
     default:
       return state;
   };
 };
+
+export function checkLogin(state = initialState.isUserLogged, action) {
+  switch (action.type) {
+    case TYPES.USER_LOGIN:
+      console.log('REDUCER STATE', state);
+      return isUserLogged(state, action.success);
+    default:
+      return state;
+  }
+};
+
+export function localChecking(state = initialState.localCheck, action) {
+  switch (action.type) {
+    case TYPES.SET_LOCAL:
+      return setLocal(state, action.value);
+    default:
+      return state;
+  }
+}
