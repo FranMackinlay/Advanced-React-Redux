@@ -56,7 +56,6 @@ export const userLogin = userInfo =>
       console.log(userInfo);
       if (userInfo) {
         const { success } = await login(userInfo);
-        console.log(success);
         if (success) {
           dispatch(loginUserAction(success));
           localStorage.setItem('isLogged', success);

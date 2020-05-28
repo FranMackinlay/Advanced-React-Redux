@@ -22,7 +22,6 @@ export default class Register extends Component {
 	onSubmit = async event => {
 		event.preventDefault();
 		await this.props.userLogin(this.state);
-		console.log('LOGIN PROPS', this.props);
 		if (this.props.isUserLoggedIn) {
 			this.props.history.push('/anuncios');
 		}
@@ -33,7 +32,6 @@ export default class Register extends Component {
 	};
 
 	render() {
-		console.log('LOGIN PROPS', this.props);
 		return (
 			<div className='login'>
 				<h1>Login</h1>

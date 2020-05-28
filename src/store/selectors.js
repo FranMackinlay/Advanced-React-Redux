@@ -10,14 +10,11 @@ export function getVisibleAds(state) {
 };
 
 export function isUserLoggedIn(state) {
-  console.log('SELECTOR', state);
   const isLogged = getUserLogin(state);
   return isLogged;
 };
 
 export function localGetter(state) {
-  console.log('LOCAL GETTER STATE', state);
   const local = getLocalCheck(state);
-  console.log('LOCAL', local);
   return local;
 }

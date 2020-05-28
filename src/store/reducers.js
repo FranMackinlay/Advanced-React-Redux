@@ -33,7 +33,6 @@ const isUserLogged = (state, success) => {
 
 const setLocal = (state, value) => {
   state = value;
-  console.log('REDUCER STATE', state);
   return state;
 }
 
@@ -63,7 +62,6 @@ export function ads(state = initialState.ads, action) {
 export function checkLogin(state = initialState.isUserLogged, action) {
   switch (action.type) {
     case TYPES.USER_LOGIN:
-      console.log('REDUCER STATE', state);
       return isUserLogged(state, action.success);
     default:
       return state;
