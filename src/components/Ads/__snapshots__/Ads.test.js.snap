@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ads should render a list of Card 1`] = `ReactWrapper {}`;
