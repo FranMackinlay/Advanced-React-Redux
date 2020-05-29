@@ -8,6 +8,7 @@ import CreateAd from '../CreateAd';
 import EditAd from '../EditAd';
 import { useDispatch } from 'react-redux';
 import { fetchAds } from '../../store/actions';
+import { FormProvider } from '../Context/FormContext';
 
 import './App.css';
 
@@ -20,17 +21,19 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Router>
-      <Switch>
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-        <Route exact path="/editAd/id=:_id" component={EditAd} />
-        <Route exact path="/anuncios/:_id" component={adDetail} />
-        <Route path="/anuncios" component={Ads} />
-        <Route path="/createAd" component={CreateAd} />
-        <Route to="/Ads" component={Ads} />
-      </Switch>
-    </Router >
+    <FormProvider>
+      <Router>
+        <Switch>
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route exact path="/editAd/id=:_id" component={EditAd} />
+          <Route exact path="/anuncios/:_id" component={adDetail} />
+          <Route path="/anuncios" component={Ads} />
+          <Route path="/createAd" component={CreateAd} />
+          <Route to="/Ads" component={Ads} />
+        </Switch>
+      </Router >
+    </FormProvider>
 
   );
 }
