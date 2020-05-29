@@ -53,7 +53,6 @@ export const checkLocal = () =>
 export const userLogin = userInfo =>
   async function (dispatch) {
     try {
-      console.log(userInfo);
       if (userInfo) {
         const { success } = await login(userInfo);
         if (success) {
