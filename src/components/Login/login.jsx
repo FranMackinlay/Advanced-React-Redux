@@ -1,49 +1,26 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useForm } from '../Context/FormContext';
+import Form from '../Form/Form';
 import './login.css';
 
-export default class Register extends Component {
-	state = {
-		username: '',
-		password: '',
-	};
+export default function Login(props) {
+	const { info } = useForm();
 
-	userTyping = event => {
-		this.setState({
-			username: event.target.value,
-		});
-	};
-	passTyping = event => {
-		this.setState({
-			password: event.target.value,
-		});
-	};
-
-	onSubmit = async event => {
+	const onSubmit = async event => {
 		event.preventDefault();
-		await this.props.userLogin(this.state);
-		if (this.props.isUserLoggedIn) {
-			this.props.history.push('/anuncios');
+		console.log(info);
+		await props.userLogin(info);
+	};
+	useEffect(() => {
+		if (props.isUserLoggedIn) {
+			props.history.push('/anuncios');
 		}
-	};
+	}, [props]);
 
-	goToRegistration = () => {
-		this.props.history.push('/register');
-	};
-
-	render() {
-		return (
-			<div className='login'>
-				<h1>Login</h1>
-				<form onSubmit={this.onSubmit}>
-					<input type='text' onChange={this.userTyping} placeholder='Username..' required />
-					<input type='password' onChange={this.passTyping} placeholder='Password..' required />
-					<button type='submit'>Log In</button>
-					<Link to='/register'>
-						<button className='create-account'>Don't have an account?</button>
-					</Link>
-				</form>
-			</div>
-		);
-	}
+	return (
+		<div className='login'>
+			<h1>Login</h1>
+			<Form onSubmit={onSubmit}></Form>
+		</div>
+	);
 }
