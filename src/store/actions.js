@@ -1,9 +1,5 @@
 import * as TYPES from './types';
 
-import api from '../services/api';
-
-const { getAds, createAd, editAd, login } = api();
-
 export const fetchAdsRequest = () => ({
   type: TYPES.FETCH_ADS_REQUEST,
 });
@@ -36,7 +32,18 @@ export const loginUserAction = success => ({
 export const setLocalStorage = value => ({
   type: TYPES.SET_LOCAL,
   value,
-})
+});
+
+export const fetchAds = () =>
+  async function (dispatch, getState, { api }) {
+    dispatch(fetchAdsRequest());
+    try {
+      const ads = await api().getAds();
+      dispatch(fetchAdsSuccess(ads));
+    } catch (error) {
+      dispatch(fetchAdsFailure(error));
+    }
+  };
 
 export const checkLocal = () =>
   async function (dispatch) {
@@ -51,10 +58,10 @@ export const checkLocal = () =>
   }
 
 export const userLogin = userInfo =>
-  async function (dispatch) {
+  async function (dispatch, getState, { api }) {
     try {
       if (userInfo) {
-        const { success } = await login(userInfo);
+        const { success } = await api().login(userInfo);
         if (success) {
           dispatch(loginUserAction(success));
           localStorage.setItem('isLogged', success);
@@ -66,21 +73,12 @@ export const userLogin = userInfo =>
     }
   }
 
-export const fetchAds = () =>
-  async function (dispatch) {
-    dispatch(fetchAdsRequest());
-    try {
-      const ads = await getAds();
-      dispatch(fetchAdsSuccess(ads));
-    } catch (error) {
-      dispatch(fetchAdsFailure(error));
-    }
-  };
+
 
 export const adCreation = adToCreate =>
-  async function (dispatch) {
+  async function (dispatch, getState, { api }) {
     try {
-      const ad = await createAd(adToCreate);
+      const ad = await api().createAd(adToCreate);
       dispatch(createAdAction(ad));
     } catch (error) {
       console.error(error);
@@ -88,9 +86,9 @@ export const adCreation = adToCreate =>
   }
 
 export const adEdition = adToEdit =>
-  async function (dispatch) {
+  async function (dispatch, getState, { api }) {
     try {
-      const ad = await editAd(adToEdit);
+      const ad = await api().editAd(adToEdit);
       dispatch(editAdAction(ad));
     } catch (error) {
       console.error(error);
