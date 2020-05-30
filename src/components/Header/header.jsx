@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
 
-export default function Header(props) {
+export default function Header() {
 	return (
 		<Fragment>
 			<Link to='/login' className='log-out-container'>
