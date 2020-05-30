@@ -26,7 +26,6 @@ const createItem = (items, itemToCreate) => {
 };
 
 const isUserLogged = (state, success) => {
-  console.log(state);
   state = success;
   return state;
 };

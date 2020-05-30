@@ -4,8 +4,6 @@ import { useForm } from '../Context/FormContext';
 
 export default function Form({ onSubmit }) {
 	const { handleChange, info } = useForm();
-	console.log(info);
-
 	return (
 		<form
 			onSubmit={event => {
