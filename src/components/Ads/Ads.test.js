@@ -27,7 +27,7 @@ describe('Ads', () => {
     }),
     subscribe: () => { },
   };
-  it('should render a list of Card', () => {
+  test('should render a list of Cards', () => {
     const wrapper = mount(
       <Router>
         <Provider store={store}>
