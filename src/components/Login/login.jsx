@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from '../Context/FormContext';
 import Form from '../Form/Form';
+import { Link } from 'react-router-dom';
 import './login.css';
 
 export default function Login(props) {
@@ -25,6 +26,9 @@ export default function Login(props) {
 		<div className='login'>
 			<h1>Login</h1>
 			<Form onSubmit={onSubmit}></Form>
+			<Link to='/register'>
+				<button className='create-account'>Don't have an account?</button>
+			</Link>
 		</div>
 	);
 }

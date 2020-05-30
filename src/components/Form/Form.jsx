@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useForm } from '../Context/FormContext';
 
 export default function Form({ onSubmit }) {
@@ -14,10 +13,6 @@ export default function Form({ onSubmit }) {
 			<input type='password' onChange={handleChange} value={info.password} name='password' placeholder='Password..' required />
 
 			<button type='submit'>Log In</button>
-
-			<Link to='/register'>
-				<button className='create-account'>Don't have an account?</button>
-			</Link>
 		</form>
 	);
 }

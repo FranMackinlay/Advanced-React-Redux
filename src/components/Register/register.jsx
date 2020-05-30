@@ -2,6 +2,7 @@ import React from 'react';
 import api from '../../services/api';
 import { useForm } from '../Context/FormContext';
 import Form from '../Form/Form';
+import { Link } from 'react-router-dom';
 import './register.css';
 
 const { register } = api();
@@ -25,6 +26,9 @@ export default function Register(props) {
 		<div className='registration'>
 			<h1>Create Account</h1>
 			<Form onSubmit={onSubmit} />
+			<Link to='/login'>
+				<button className='create-account'>Already have an account?</button>
+			</Link>
 		</div>
 	);
 }
