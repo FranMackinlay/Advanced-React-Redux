@@ -15,6 +15,7 @@ export function FormProvider(props) {
 	const value = useMemo(() => {
 		return {
 			info,
+			setInfo,
 			handleChange,
 		};
 	}, [info]);
