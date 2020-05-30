@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import './card.css';
 
 export default function Card({ ad }) {
 	return (
-		<li>
+		<Fragment>
 			<Link key={ad._id} to={`/anuncios/${ad._id}`}>
 				<img src={ad.photo} alt='AdImage' />
 				<br />
@@ -18,6 +18,6 @@ export default function Card({ ad }) {
 			<Link to={`/editAd/id=${ad._id}`} className='edit-link'>
 				<button className='edit-btn'>Edit Ad</button>
 			</Link>
-		</li>
+		</Fragment>
 	);
 }
