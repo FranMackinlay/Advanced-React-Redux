@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import api from '../../services/api';
-import { Link } from 'react-router-dom';
 import { useForm } from '../Context/FormContext';
 import Form from '../Form/Form';
 import './register.css';
