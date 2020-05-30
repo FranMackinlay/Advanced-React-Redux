@@ -4,10 +4,9 @@ import Card from '../Card/card';
 import './ads.css';
 import { fetchAds } from '../../store/actions';
 import { useDispatch } from 'react-redux';
+import List from '../List/List';
 
 export default function Ads(props) {
-	const renderAdList = adsList => adsList.map(ad => <Card key={ad._id} ad={ad} />);
-
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -21,7 +20,7 @@ export default function Ads(props) {
 		<div className='content-container'>
 			<Header />
 			<div className='ads-container'>
-				<ul>{renderAdList(props.ads)}</ul>
+				<List items={props.ads} renderItem={ad => <Card key={ad._id} ad={ad} />} />
 			</div>
 		</div>
 	);
